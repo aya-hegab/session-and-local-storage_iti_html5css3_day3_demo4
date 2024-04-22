@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>session-and-local-storage</title>
+    <style>
+      #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 400px;
+        height: 400px;
+        margin: 10px auto;
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="container">
+      <section>
+        <input type="text" placeholder="sessionKey" id="sessionkey" />
+        <input type="text" placeholder="sessionValue" id="sessionvalue" />
+      </section>
+      <section>
+        <input type="text" placeholder="localKey" id="localkey" />
+        <input type="text" placeholder="localValue" id="localvalue" />
+      </section>
+      <section>
+        <input type="button" value="save to session" id="saveToSession" />
+        <input type="button" value="get from session" id="getFromSession" />
+      </section>
+      <section>
+        <input type="button" value="save to local" id="saveToLocal" />
+        <input type="button" value="get from local" id="getFromLocal" />
+      </section>
+      <section>
+        <input type="button" value="clear session/local" id="clear" />
+      </section>
+    </section>
+    <script>
+      document
+        .getElementById("saveToSession")
+        .addEventListener("click", function () {
+          sessionStorage.setItem(
+            document.getElementById("sessionkey").value,
+            document.getElementById("sessionvalue").value
+          );
+        });
+
+      document
+        .getElementById("getFromSession")
+        .addEventListener("click", function () {
+          console.log(
+            sessionStorage.getItem(document.getElementById("sessionkey").value)
+          );
+        });
+
+      document
+        .getElementById("saveToLocal")
+        .addEventListener("click", function () {
+          localStorage.setItem(
+            document.getElementById("localkey").value,
+            document.getElementById("localvalue").value
+          );
+        });
+
+      document
+        .getElementById("getFromLocal")
+        .addEventListener("click", function () {
+          console.log(
+            localStorage.getItem(document.getElementById("localkey").value)
+          );
+        });
+
+      document.getElementById("clear").addEventListener("click", function () {
+        localStorage.clear();
+      });
+
+      //JS object => stringify()
+      let person = {
+        id: 1,
+        name: "Mahmoud",
+        age: 29,
+      };
+
+      // localStorage.setItem('person', JSON.stringify(person))
+      // console.log(JSON.stringify(person))
+      // localStorage.getItem(person)
+      console.log(JSON.parse(localStorage.getItem("person")).id);
+
+      // console.log(person.name)
+
+      //JS object notation => parse()
+      // let jsonObj = `{
+      //         "id": 1,
+      //         "name": 'Mahmoud',
+      //         "age": 29
+      // }`
+
+      //parse() | stringify()
+    </script>
+  </body>
+</html>
